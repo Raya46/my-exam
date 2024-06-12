@@ -3,7 +3,7 @@
     "name": "my-exam",
     "slug": "my-exam",
     "version": "1.0.0",
-    "orientation": ["portrait", "landscape"],
+    "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -18,11 +18,13 @@
       "supportsTablet": true
     },
     "android": {
+      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ray4.myexam"
+      "package": "com.ray4.myexam",
+      "permissions": ["INTERNET"]
     },
     "web": {
       "favicon": "./assets/images/icon.png"
