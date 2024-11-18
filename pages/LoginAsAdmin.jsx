@@ -1,9 +1,24 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import BASE_API_URL from "../constant/ip";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { buttonStyle, textBasic, textHero, textInputStyle, textSubtitle, textTitle } from "../assets/style/basic";
+import {
+  buttonStyle,
+  textBasic,
+  textHero,
+  textInputStyle,
+  textSubtitle,
+  textTitle,
+} from "../assets/style/basic";
 import { useLogin } from "../utils/useLogin";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -18,19 +33,7 @@ const LoginAsAdmin = ({ navigation }) => {
       setErrorMessage("All fields are required.");
       return;
     }
-    if (!fields.name.includes("@")) {
-      setErrorMessage("Email must contain '@'.");
-      return;
-    }
-    try {
-      await login(`${BASE_API_URL}login`, 'MainAdmin');
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setErrorMessage("Unauthorized. Please check your name or password.");
-      } else {
-        setErrorMessage("Login failed. Please check your name or password.");
-      }
-    }
+    await login(`${BASE_API_URL}login`, "MainAdmin");
   };
 
   return (
@@ -42,7 +45,10 @@ const LoginAsAdmin = ({ navigation }) => {
       >
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View className="pt-8 flex gap-4">
-            <TouchableOpacity onPress={() => navigation.pop()} className="h-8 w-32">
+            <TouchableOpacity
+              onPress={() => navigation.pop()}
+              className="h-8 w-32"
+            >
               <FontAwesomeIcon icon={faArrowLeft} color="black" />
             </TouchableOpacity>
             <View>
@@ -54,14 +60,16 @@ const LoginAsAdmin = ({ navigation }) => {
             </View>
           </View>
           <View className="flex gap-2 pt-4">
-            {errorMessage ? <Text style={{ color: 'red' }}>{errorMessage}</Text> : null}
+            {errorMessage ? (
+              <Text style={{ color: "red" }}>{errorMessage}</Text>
+            ) : null}
             <View className="flex gap-y-2">
-              <Text className={textBasic}>Email</Text>
+              <Text className={textBasic}>Name</Text>
               <TextInput
                 className={textInputStyle}
                 value={fields.name}
                 onChangeText={(text) => setFields({ ...fields, name: text })}
-                placeholder="input email"
+                placeholder="input name"
               />
             </View>
             <View className="flex gap-y-2">
@@ -69,14 +77,18 @@ const LoginAsAdmin = ({ navigation }) => {
               <TextInput
                 className={textInputStyle}
                 value={fields.password}
-                onChangeText={(text) => setFields({ ...fields, password: text })}
+                onChangeText={(text) =>
+                  setFields({ ...fields, password: text })
+                }
                 placeholder="password"
                 secureTextEntry
               />
             </View>
             <View className="pt-4">
               <TouchableOpacity onPress={handleLogin} className={buttonStyle}>
-                <Text className={`${textTitle} text-slate-50 text-lg`}>Login Admin</Text>
+                <Text className={`${textTitle} text-slate-50 text-lg`}>
+                  Login Admin
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

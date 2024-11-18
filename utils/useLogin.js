@@ -8,7 +8,7 @@ import { ToastAndroid } from 'react-native';
 export const useLogin = () => {
   const navigation = useNavigation();
   const [fields, setFields] = useState({
-    name: '',
+    name: ''.toLowerCase(),
     token: '',
     password: '',
   });
@@ -25,6 +25,7 @@ export const useLogin = () => {
       const token = response.data.token;
       const role = response.data.message;
       await saveTokenRole(token, role, fields.name);
+  
       setFields({
         name: '',
         token: '',
@@ -32,9 +33,15 @@ export const useLogin = () => {
       });
       navigation.replace(page, { name: fields.name });
     } catch (error) {
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      if (error.response) {
+        console.log(error.message, error.response.data.message);
+        ToastAndroid.show(error.response.data.message, ToastAndroid.LONG);
+      } else {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      }
     }
   };
+  
 
   return { fields, setFields, login };
 };

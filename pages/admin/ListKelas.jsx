@@ -50,6 +50,7 @@ const ListKelas = memo(({ navigation }) => {
   const deleteKelas = useCallback(async (id) => {
     try {
       await deleteData(`${BASE_API_URL}delete-kelas/${id}`);
+      setModalVisible(false)
       navigation.reset({
         index: 0,
         routes: [{ name: 'MainAdmin' }],

@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Thumbnail from '../assets/thumbnail.png'
 import { buttonOutlined, buttonStyle, textBasic, textHero, textSubtitle, textTitle } from '../assets/style/basic'
 import Icon from '../assets/images/icon.png'
 
@@ -36,17 +35,7 @@ export default function PortalPage({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        <View className="pt-4 flex">
-          <View className="justify-center flex flex-row gap-1">
-            <Text className={`${textBasic}`}>Don't have an account ?</Text>
-            <TouchableOpacity onPress={() => navigation.push("RegisterPage")} className={`${textBasic} text-blue-500`}>
-              <Text className={`${textBasic} text-blue-500`}>Register</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
       </View>
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({})

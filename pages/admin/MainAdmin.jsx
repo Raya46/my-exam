@@ -26,6 +26,7 @@ const MainAdmin = memo(() => {
       const response = await axios.get(`${BASE_API_URL}admin-sekolah`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log('tes', response.data);
       setSubsData(response.data);
     } catch (error) {
       console.error("Error fetching subs data:", error);

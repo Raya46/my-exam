@@ -40,7 +40,6 @@ const ListUser = ({ navigation, route }) => {
   const { data, error, isLoading, deleteData, mutate } = useApi(url);
   const { logout } = useLogout();
   const users = data?.data?.data || [];
-  const links = data?.data?.links || [];
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {
@@ -52,6 +51,7 @@ const ListUser = ({ navigation, route }) => {
     try {
       deleteData(`${BASE_API_URL}admin-sekolah/${id}`);
       mutate(url);
+      setModalVisible(false)
     } catch (error) {
       ToastAndroid.show(error.message, ToastAndroid.LONG);
     }
